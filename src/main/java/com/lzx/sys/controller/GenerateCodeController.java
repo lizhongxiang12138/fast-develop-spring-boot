@@ -17,6 +17,7 @@ public class GenerateCodeController {
 	
 	@GetMapping("/printExceptionTest")
 	public synchronized String printExceptionTest(){
+
 		return generateCodeService.printExceptionTest();
 	}
 
