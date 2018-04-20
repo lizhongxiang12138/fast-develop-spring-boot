@@ -3,6 +3,6 @@ spring:
     name: service-development
   cloud:
     config:
-      uri: http://127.0.0.1:9000
+      uri: http://47.52.150.205:9000
       profile: test
       label: master
