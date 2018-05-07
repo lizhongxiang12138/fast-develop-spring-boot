@@ -14,4 +14,4 @@ spring:
 lzx:
   zookeeper:
     server: 47.52.150.205:2181
-    sessionTimeout: 30000
+    sessionTimeout: 3000

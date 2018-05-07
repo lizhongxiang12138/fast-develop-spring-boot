@@ -4,6 +4,7 @@ import org.apache.zookeeper.ZooKeeper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
@@ -13,7 +14,7 @@ import java.io.IOException;
  * @author : lzx
  * 时间 : 2018/4/20.
  */
-@Configuration
+@Component
 public class ZookeeperConfig {
 
     @Value("${lzx.zookeeper.server}")
@@ -21,8 +22,11 @@ public class ZookeeperConfig {
     @Value("${lzx.zookeeper.sessionTimeout}")
     private Integer sessionTimeout;
 
-    @Bean
-    public ZooKeeper zooKeeper() throws IOException {
-        return new ZooKeeper(serverName, sessionTimeout, null);
+    public String getServerName() {
+        return serverName;
+    }
+
+    public Integer getSessionTimeout() {
+        return sessionTimeout;
     }
 }
