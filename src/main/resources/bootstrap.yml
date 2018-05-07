@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: service-development
+  cloud:
+    config:
+      uri: http://47.52.150.205:9000
+      profile: test
+      label: master
