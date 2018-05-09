@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="viewPage">
+    <p>
+        <label>用户名:</label><input type="text" v-model="user.userName">
+    </p>
+    <p>
+        <label>密码:</label><input type="password" v-model="user.password">
+    </p>
+    <button v-on:click="submitData">登录</button><br/>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="login/login.js"></script>
+
+</body>
+</html>

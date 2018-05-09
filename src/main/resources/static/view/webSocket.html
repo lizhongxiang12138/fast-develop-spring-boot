@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>webSocket</title>
+</head>
+<body>
+    <div id="viewBody">
+        <textarea v-model="sendData"></textarea>
+        <button v-on:click="addData">发送数据</button>
+        <button v-on:click="connectWebSocket">连接服务器</button>
+        <ul>
+            <li v-for="message in messageList">
+                {{message.content}}
+            </li>
+        </ul>
+    </div>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var socket;
+
+        var viewModel = new Vue({
+            el:'#viewBody',
+            data:{
+                messageList:[
+                    {title:'消息1',content:'你好啊!'},
+                    {title:'消息2',content:'我是xxx!'}
+                ],
+                sendData:"发我啊，快快快~",
+            },
+            methods:{
+                addData:function () {
+                    debugger;
+                    if(!socket){
+                        alert("请选连接服务器");
+                        return;
+                    }
+                    socket.send(this.sendData);
+                },
+                connectWebSocket:function () {
+                    debugger;
+                    connectWss();
+                }
+            }
+        });
+
+        /**
+         * 测试消息添加
+         * @param data
+         */
+        function addMessageTest(data,pushData) {
+            data.messageList.push(pushData);
+        } 
+        
+        function connectWss() {
+
+            if(typeof (WebSocket) == "undefined"){
+                alert("浏览器不支持 webSocket");
+                return;
+            }
+            if(!socket){
+                socket = new WebSocket("ws://127.0.0.1:10000/websocket");
+                socket.onmessage = function(msg){
+                    debugger;
+                    alert(msg.data);
+                    addMessageTest(viewModel,{
+                        title:'消息'+viewModel.messageList.length,
+                        content:msg.data
+                    });
+                };
+                //关闭事件
+                socket.onclose = function() {
+                    console.log("Socket已关闭");
+                };
+                //发生了错误事件
+                socket.onerror = function() {
+                    alert("Socket发生了错误");
+                }
+                $(window).unload(function(){
+                    //socket.close();
+                });
+            }
+        }
+    </script>
+</body>
+</html>
