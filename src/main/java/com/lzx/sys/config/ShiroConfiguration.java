@@ -63,7 +63,9 @@ public class ShiroConfiguration {
     private Map<String,String> loadFilterChainDefinitionMap() {
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/**/*.js","anon");
+        filterChainDefinitionMap.put("/test/electronicInvoice","anon");
         filterChainDefinitionMap.put("/view/login.html","anon");
+        filterChainDefinitionMap.put("/authc/doLogin","anon");
         filterChainDefinitionMap.put("/**","authc");
         return filterChainDefinitionMap;
     }

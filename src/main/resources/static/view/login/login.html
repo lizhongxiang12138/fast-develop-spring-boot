@@ -8,14 +8,15 @@
 
 <div id="viewPage">
     <p>
-        <label>用户名:</label><input type="text" v-model="user.userName"/>
+        <label>用户名:</label><input type="text" v-model="user.userAccount"/>
     </p>
     <p>
-        <label>密码:</label><input type="password" v-model="user.password"/>
+        <label>密码:</label><input type="password" v-model="user.userPassword"/>
     </p>
     <button v-on:click="submitData">登录</button><br/>
 </div>
 
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script type="text/javascript" src="login.js"></script>
 

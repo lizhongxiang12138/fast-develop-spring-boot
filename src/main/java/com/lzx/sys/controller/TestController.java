@@ -173,9 +173,9 @@ public class TestController {
      * @return
      */
     @GetMapping("/electronicInvoice")
-    public String electronicInvoice(){
+    public InvoiceOpenResponse electronicInvoice(){
         String serialNo = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date());
-        String sellerTaxNo = "91530100795186426Y";
+        String sellerTaxNo = "91500000747150426A";
         try
         {
             LoginRequest loginRequest = new LoginRequest();
@@ -197,7 +197,7 @@ public class TestController {
             request.setSerialNo(serialNo);
             request.setInvoiceSpecialMark("00");
             request.setInvoiceTypeCode("026");
-            request.setInvoiceTerminalCode("004");
+            request.setInvoiceTerminalCode("kpyuan002");
             request.setBuyerTaxNo("");
             request.setBuyerName("百望股份有限公司");
             request.setBuyerAddressPhone("");
@@ -230,7 +230,7 @@ public class TestController {
             invoiceDetails.setGoodsLineNature("0");
             invoiceDetails.setGoodsCode("1020101000000000000");
             invoiceDetails.setGoodsExtendCode("");
-            invoiceDetails.setGoodsName("ԭú");
+            invoiceDetails.setGoodsName("停车费用");
             invoiceDetails.setGoodsTaxItem("");
             invoiceDetails.setGoodsSpecification("");
             invoiceDetails.setGoodsUnit("");
@@ -251,7 +251,7 @@ public class TestController {
             IBopClient client = new BopRestClient(url, appkey, appSecret);
 
             InvoiceOpenResponse response = 	client.execute(request, token, InvoiceOpenResponse.class);
-            return response.getInvoiceDate();
+            return response;
         }
         catch (BopException e)
         {
